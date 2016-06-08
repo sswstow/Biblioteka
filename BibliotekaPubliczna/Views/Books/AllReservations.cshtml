@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BibliotekaPubliczna.Models.Reservation>
+@{
+    ViewBag.Title = "AllReservations";
+}
+
+<h2>Rezerwacje</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResBookTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReservationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndOfReservation)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResBookTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndOfReservation)
+            </td>
+        </tr>
+    }
+
+</table>
+
+

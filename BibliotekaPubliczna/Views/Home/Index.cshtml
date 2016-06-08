@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Biblioteka "TYRION"</h1>
+    <p class="lead">Na naszej stronie masz możliwość przeglądania listy książek jakie aktualnie są do wypożyczenia w bibliotece, 
+        a także rezerwację interesującej Cię pozycji na czas 2 godzin. Po tym czasie od momentu złożenia zamówienia pozycja
+        będzie ponownie dostępna dla wszystkich klientów.</p>
+    <p><div class="btn btn-primary" onclick="location.href='@Url.Action("Login","Account")'">
+          Logowanie &raquo;
+        </div>
+    </p>
+    <p><div class="lead">Zarejestruj się jeśli nie masz konta! @Html.ActionLink("Rejestracja","Register", "Account")</div></p>
+
+</div>

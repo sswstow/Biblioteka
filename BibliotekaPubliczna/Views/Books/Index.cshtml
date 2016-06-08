@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BibliotekaPubliczna.Models.BooksViewModels>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Baza książek</h2>
+
+<p>
+    @Html.ActionLink("Dodaj Nową", "Create")
+
+    @using (Html.BeginForm("Index", "Books", FormMethod.Get))
+    {
+    <p>
+        Gatunek: @Html.DropDownList("bookType", "Wszystkie")
+        Tytuł: @Html.TextBox("SearchString") <br />
+        <input type="submit" value="Filtruj" />
+    </p>
+    }
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Print)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Print)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+
+    @if (User.IsInRole("Administrator"))
+    {
+        <td>
+            @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.ID }) |          
+            @Html.ActionLink("Wypożycz", "Borrow", new { id = item.ID })
+        </td>
+    }
+    else
+    {
+        <td>
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Rezerwuj", "Reserve", new { id = item.ID })
+        </td>
+    }
+    </tr>
+}
+
+</table>

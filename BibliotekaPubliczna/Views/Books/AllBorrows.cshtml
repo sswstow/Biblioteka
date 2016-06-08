@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BibliotekaPubliczna.Models.BorrowedBooks>
+@{
+    ViewBag.Title = "AllBorrows";
+}
+
+<h2>Wypożyczenia</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BorrowDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowDate)
+            </td>
+        @if (User.IsInRole("Administrator"))
+        {
+            <td>
+                @Html.ActionLink("Oddaj", "GiveBack", new { id = item.BorrowID }) 
+            </td>
+        }
+        </tr>
+    }
+
+</table>
+
+
+
